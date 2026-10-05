@@ -15,7 +15,8 @@ export function EditableCostCell({
   const [editing, setEditing] = useState(false);
   const [value, setValue] = useState(cost?.toFixed(2) ?? "");
   const mutation = useSaveProductCost();
-  const save = () => {
+  const save = (e: any) => {
+    e.preventDefault?.();
     const parsed = Number(value.replace(",", "."));
     if (!Number.isFinite(parsed) || parsed < 0) return;
     mutation.mutate(
@@ -38,7 +39,10 @@ export function EditableCostCell({
       </div>
     );
   return (
-    <div className="flex min-w-52 items-center justify-end gap-1">
+    <form
+      className="flex min-w-52 items-center justify-end gap-1"
+      onSubmit={save}
+    >
       <Input
         type="number"
         min="0"
@@ -66,6 +70,6 @@ export function EditableCostCell({
       >
         <X className="size-4" />
       </Button>
-    </div>
+    </form>
   );
 }
