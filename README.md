@@ -23,7 +23,7 @@ cp .env.example .env
 docker compose up --build
 ```
 
-Acesse http://localhost:8080.
+Frontend: http://localhost:5173 · API: http://localhost:3333
 
 ## Testes e build
 
