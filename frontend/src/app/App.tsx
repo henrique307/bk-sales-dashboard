@@ -8,7 +8,6 @@ export function App() {
     <div className="min-h-screen">
       <header className="border-b bg-card">
         <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6">
-          <p className="text-sm font-semibold text-primary">BK COMPANY</p>
           <h1 className="mt-1 text-2xl font-bold">
             Dashboard — Visão geral da sua loja
           </h1>
