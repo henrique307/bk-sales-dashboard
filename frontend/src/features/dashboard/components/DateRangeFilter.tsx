@@ -10,6 +10,18 @@ export function DateRangeFilter({
 }) {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
+
+  const handleClear = () => {
+    setStartDate("");
+    setEndDate("");
+    onApply({
+      startDate: undefined,
+      endDate: undefined,
+    });
+  };
+
+  const hasFilter = startDate && endDate;
+
   return (
     <form
       className="grid gap-3 sm:flex sm:items-end"
@@ -29,6 +41,7 @@ export function DateRangeFilter({
           onChange={(e) => setStartDate(e.target.value)}
         />
       </label>
+
       <label className="grid gap-1 text-xs font-medium text-muted-foreground">
         Data final
         <Input
@@ -38,7 +51,16 @@ export function DateRangeFilter({
           onChange={(e) => setEndDate(e.target.value)}
         />
       </label>
-      <Button type="submit">Filtrar</Button>
+
+      <div className="flex gap-2">
+        <Button type="submit">Filtrar</Button>
+
+        {hasFilter && (
+          <Button type="button" variant="outline" onClick={handleClear}>
+            Limpar
+          </Button>
+        )}
+      </div>
     </form>
   );
 }
