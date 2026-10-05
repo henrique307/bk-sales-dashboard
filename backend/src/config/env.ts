@@ -3,7 +3,9 @@ import { config } from "dotenv";
 import { z } from "zod";
 
 // Looks in the backend folder first, then the monorepo root, so both `npm run dev` layouts work.
-config({ path: [resolve(process.cwd(), ".env"), resolve(process.cwd(), "../.env")] });
+config({
+  path: [resolve(process.cwd(), ".env"), resolve(process.cwd(), "../.env")],
+});
 
 const envSchema = z.object({
   PORT: z.coerce.number().int().positive().default(3333),

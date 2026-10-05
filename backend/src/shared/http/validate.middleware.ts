@@ -15,7 +15,9 @@ export function validate(schemas: RequestSchemas): RequestHandler {
       if (!schema) continue;
       const result = schema.safeParse(req[key]);
       if (!result.success) {
-        return next(new ValidationError(`Invalid request ${key}`, result.error.flatten()));
+        return next(
+          new ValidationError(`Invalid request ${key}`, result.error.flatten()),
+        );
       }
       req[key] = result.data;
     }

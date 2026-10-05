@@ -3,7 +3,10 @@ import { asyncHandler } from "../../shared/http/async-handler.js";
 import { validate } from "../../shared/http/validate.middleware.js";
 import { toCents } from "../../shared/money.js";
 import { toProductResponse } from "./product.presenter.js";
-import { createProductSchema, type CreateProductInput } from "./product.schemas.js";
+import {
+  createProductSchema,
+  type CreateProductInput,
+} from "./product.schemas.js";
 import type { ProductService } from "./product.service.js";
 
 export function createProductRoutes(service: ProductService): Router {
@@ -22,7 +25,11 @@ export function createProductRoutes(service: ProductService): Router {
     validate({ body: createProductSchema }),
     asyncHandler(async (req, res) => {
       const { sku, name, price } = req.body as CreateProductInput;
-      const product = await service.create({ sku, name, priceInCents: toCents(price) });
+      const product = await service.create({
+        sku,
+        name,
+        priceInCents: toCents(price),
+      });
       res.status(201).json(toProductResponse(product));
     }),
   );

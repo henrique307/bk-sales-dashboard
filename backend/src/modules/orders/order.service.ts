@@ -11,7 +11,10 @@ export class OrderService {
   constructor(private readonly orders: OrderRepository) {}
 
   async register(data: NewOrder): Promise<RegisterOrderResult> {
-    const existing = await this.orders.findByExternalId(data.source, data.externalId);
+    const existing = await this.orders.findByExternalId(
+      data.source,
+      data.externalId,
+    );
     if (existing) return { order: existing, created: false };
 
     const order = await this.orders.save(createOrder(data));

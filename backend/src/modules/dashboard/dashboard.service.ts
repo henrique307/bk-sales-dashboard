@@ -24,7 +24,10 @@ export class DashboardService {
       this.buildCostBySku(),
     ]);
 
-    const revenueInCents = orders.reduce((sum, order) => sum + order.totalInCents, 0);
+    const revenueInCents = orders.reduce(
+      (sum, order) => sum + order.totalInCents,
+      0,
+    );
     const totalCostInCents = orders.reduce(
       (sum, order) => sum + this.orderCost(order, costBySku),
       0,
@@ -40,9 +43,16 @@ export class DashboardService {
 
   // Uses the CURRENT cost of each product (no historical snapshot) — see README trade-offs.
   private async buildCostBySku(): Promise<Map<string, number>> {
-    const [products, costs] = await Promise.all([this.products.findAll(), this.costs.findAll()]);
-    const costByProductId = new Map(costs.map((cost) => [cost.productId, cost.costInCents]));
-    return new Map(products.map((p) => [p.sku, costByProductId.get(p.id) ?? 0]));
+    const [products, costs] = await Promise.all([
+      this.products.findAll(),
+      this.costs.findAll(),
+    ]);
+    const costByProductId = new Map(
+      costs.map((cost) => [cost.productId, cost.costInCents]),
+    );
+    return new Map(
+      products.map((p) => [p.sku, costByProductId.get(p.id) ?? 0]),
+    );
   }
 
   private orderCost(order: Order, costBySku: Map<string, number>): number {

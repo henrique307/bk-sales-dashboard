@@ -24,7 +24,9 @@ const genericEcommercePayloadSchema = z.object({
   createdAt: z.string().datetime({ offset: true }),
 });
 
-export type GenericEcommercePayload = z.infer<typeof genericEcommercePayloadSchema>;
+export type GenericEcommercePayload = z.infer<
+  typeof genericEcommercePayloadSchema
+>;
 
 export class GenericEcommerceMapper implements OrderWebhookMapper {
   readonly platform = "generic-ecommerce";
@@ -32,14 +34,20 @@ export class GenericEcommerceMapper implements OrderWebhookMapper {
   toOrder(rawPayload: unknown): NewOrder {
     const result = genericEcommercePayloadSchema.safeParse(rawPayload);
     if (!result.success) {
-      throw new ValidationError("Invalid generic-ecommerce payload", result.error.flatten());
+      throw new ValidationError(
+        "Invalid generic-ecommerce payload",
+        result.error.flatten(),
+      );
     }
     const payload = result.data;
 
     return {
       externalId: payload.id,
       source: this.platform,
-      customer: { name: payload.buyer.buyerName, email: payload.buyer.buyerEmail },
+      customer: {
+        name: payload.buyer.buyerName,
+        email: payload.buyer.buyerEmail,
+      },
       items: payload.lineItems.map((item) => ({
         sku: item.itemId,
         name: item.itemName,

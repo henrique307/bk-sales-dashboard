@@ -46,15 +46,15 @@ Repetir o comando retorna `200` e o mesmo pedido, sem duplicação. A primeira c
 
 ## Endpoints
 
-| Método | Rota | Descrição |
-|---|---|---|
-| GET | `/api/health` | Healthcheck |
-| POST / GET | `/api/products` | Criar / listar produtos |
-| PUT | `/api/product-costs/:productId` | Criar ou atualizar custo |
-| GET | `/api/product-costs` | Produtos com custo associado |
-| POST | `/api/webhooks/:platform/orders` | Receber pedido externo |
-| GET | `/api/orders` | Pedidos, com período opcional |
-| GET | `/api/dashboard` | Resumo, com período opcional |
+| Método     | Rota                             | Descrição                     |
+| ---------- | -------------------------------- | ----------------------------- |
+| GET        | `/api/health`                    | Healthcheck                   |
+| POST / GET | `/api/products`                  | Criar / listar produtos       |
+| PUT        | `/api/product-costs/:productId`  | Criar ou atualizar custo      |
+| GET        | `/api/product-costs`             | Produtos com custo associado  |
+| POST       | `/api/webhooks/:platform/orders` | Receber pedido externo        |
+| GET        | `/api/orders`                    | Pedidos, com período opcional |
+| GET        | `/api/dashboard`                 | Resumo, com período opcional  |
 
 `startDate` e `endDate` usam `YYYY-MM-DD` e são inclusivos em UTC.
 

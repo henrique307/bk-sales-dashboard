@@ -3,7 +3,10 @@ import { toDateRange } from "../../shared/date-range.js";
 import { asyncHandler } from "../../shared/http/async-handler.js";
 import { validate } from "../../shared/http/validate.middleware.js";
 import { fromCents } from "../../shared/money.js";
-import { dashboardQuerySchema, type DashboardQuery } from "./dashboard.schemas.js";
+import {
+  dashboardQuerySchema,
+  type DashboardQuery,
+} from "./dashboard.schemas.js";
 import type { DashboardService } from "./dashboard.service.js";
 
 export function createDashboardRoutes(service: DashboardService): Router {

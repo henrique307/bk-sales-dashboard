@@ -1,7 +1,10 @@
 import { Router } from "express";
 import { toDateRange } from "../../shared/date-range.js";
 import { asyncHandler } from "../../shared/http/async-handler.js";
-import { periodQuerySchema, type PeriodQuery } from "../../shared/http/period.schema.js";
+import {
+  periodQuerySchema,
+  type PeriodQuery,
+} from "../../shared/http/period.schema.js";
 import { validate } from "../../shared/http/validate.middleware.js";
 import { toOrderResponse } from "./order.presenter.js";
 import type { OrderService } from "./order.service.js";

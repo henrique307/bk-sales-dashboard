@@ -23,11 +23,19 @@ export class ProductCostService {
   }
 
   async listWithProducts(): Promise<ProductWithCost[]> {
-    const [products, costs] = await Promise.all([this.products.findAll(), this.costs.findAll()]);
-    const costByProductId = new Map(costs.map((cost) => [cost.productId, cost]));
+    const [products, costs] = await Promise.all([
+      this.products.findAll(),
+      this.costs.findAll(),
+    ]);
+    const costByProductId = new Map(
+      costs.map((cost) => [cost.productId, cost]),
+    );
 
     return products
       .sort((a, b) => a.name.localeCompare(b.name))
-      .map((product) => ({ product, cost: costByProductId.get(product.id) ?? null }));
+      .map((product) => ({
+        product,
+        cost: costByProductId.get(product.id) ?? null,
+      }));
   }
 }

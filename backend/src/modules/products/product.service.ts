@@ -1,5 +1,9 @@
 import { ConflictError } from "../../shared/errors/app-error.js";
-import { createProduct, type NewProduct, type Product } from "./product.entity.js";
+import {
+  createProduct,
+  type NewProduct,
+  type Product,
+} from "./product.entity.js";
 import type { ProductRepository } from "./product.repository.js";
 
 export class ProductService {

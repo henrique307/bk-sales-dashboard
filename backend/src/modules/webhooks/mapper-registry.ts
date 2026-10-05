@@ -3,7 +3,9 @@ import { GenericEcommerceMapper } from "./mappers/generic-ecommerce.mapper.js";
 import type { OrderWebhookMapper } from "./order-webhook-mapper.js";
 
 // To support a new platform: create a mapper in ./mappers and add it to this list.
-export const registeredMappers: OrderWebhookMapper[] = [new GenericEcommerceMapper()];
+export const registeredMappers: OrderWebhookMapper[] = [
+  new GenericEcommerceMapper(),
+];
 
 export class MapperRegistry {
   private readonly mappers: Map<string, OrderWebhookMapper>;

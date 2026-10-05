@@ -3,14 +3,23 @@ import { InMemoryRepository } from "../../shared/repositories/in-memory.reposito
 import type { Order } from "./order.entity.js";
 import type { OrderRepository } from "./order.repository.js";
 
-export class InMemoryOrderRepository extends InMemoryRepository<Order> implements OrderRepository {
+export class InMemoryOrderRepository
+  extends InMemoryRepository<Order>
+  implements OrderRepository
+{
   constructor() {
     super((order) => order.id);
   }
 
-  async findByExternalId(source: string, externalId: string): Promise<Order | null> {
+  async findByExternalId(
+    source: string,
+    externalId: string,
+  ): Promise<Order | null> {
     const orders = await this.findAll();
-    return orders.find((o) => o.source === source && o.externalId === externalId) ?? null;
+    return (
+      orders.find((o) => o.source === source && o.externalId === externalId) ??
+      null
+    );
   }
 
   async findByPeriod(range?: DateRange): Promise<Order[]> {
