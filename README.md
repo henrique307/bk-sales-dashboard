@@ -95,7 +95,7 @@ Implemente `ProductRepository`, `ProductCostRepository` e `OrderRepository` usan
 
 ## Vídeo demonstrativo
 
-Link: _adicionar após a gravação_.
+Link: [Vídeo apresentação](https://youtu.be/BiJp9N339NM)
 
 ### Três pontos para destacar em 3 minutos
 
